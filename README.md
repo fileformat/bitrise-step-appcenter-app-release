@@ -1,7 +1,10 @@
-# AppCenter App Release
+# AppCenter App Release <img alt="AppCenter Logo" src="https://www.vectorlogo.zone/logos/appcenterms/appcenterms-ar21.svg" height="90" align="right"/><img alt="Bitrise Logo" src="https://www.vectorlogo.zone/logos/bitriseio/bitriseio-ar21.svg" height="90" align="right"/>
 
-Release an application on Microsoft AppCenter
+This is a "step" for the [Bitrise](https://www.bitrise.io/) CI/CD service that publishes ("releases") an application to [Microsoft AppCenter](https://appcenter.ms/).
 
+## Troubleshooting
+
+AppCenter has thorough Swagger/OpenAPI [documentation](https://openapi.appcenter.ms/) that includes all the possible HTTP error status codes (which are printed as the script runs).
 
 ## How to use this Step
 
