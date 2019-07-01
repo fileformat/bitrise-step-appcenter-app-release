@@ -2,9 +2,16 @@
 
 This is a "step" for the [Bitrise](https://www.bitrise.io/) CI/CD service that publishes ("releases") an application to [Microsoft AppCenter](https://appcenter.ms/).
 
+## Required variables
+
+* appcenter_api_token - token for the AppCenter API.  This is a secret and should not be embedded in bitrise.yml!
+* appcenter_name - name of the app on AppCenter
+* appcenter_org - AppCenter organization that owns the app
+* artifact_path - the full path of the `.ipa` or `.apk` file
+
 ## Troubleshooting
 
-AppCenter has thorough Swagger/OpenAPI [documentation](https://openapi.appcenter.ms/) that includes all the possible HTTP error status codes (which are printed as the script runs).
+AppCenter has thorough Swagger/OpenAPI [documentation](https://openapi.appcenter.ms/) that includes the possible HTTP error status codes (which are printed as the script runs).
 
 ## How to use this Step
 
