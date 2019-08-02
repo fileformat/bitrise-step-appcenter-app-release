@@ -84,3 +84,8 @@ inputs:
       title: "path to the built application file (.ipa or .apk)"
       is_expand: true
       is_required: true
+  - release_notes: $RELEASE_NOTES
+    opts:
+      title: "Uploaded build related release notes"
+      is_expand: true
+      is_required: false
