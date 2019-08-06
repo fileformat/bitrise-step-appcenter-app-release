@@ -43,6 +43,7 @@ workflows:
         - appcenter_name: TestName
         - appcenter_org: TestOrg
         - artifact_path: "../step.sh"
+        - release_notes: "Test release notes"
     - script:
         inputs:
         - content: |
