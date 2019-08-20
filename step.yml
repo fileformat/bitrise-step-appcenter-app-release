@@ -63,7 +63,7 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - appcenter_api_token:  $APPCENTER_API_TOKEN
+  - appcenter_api_token: $APPCENTER_API_TOKEN
     opts:
       title: AppCenter API Token
       is_expand: true
@@ -84,6 +84,12 @@ inputs:
       title: "path to the built application file (.ipa or .apk)"
       is_expand: true
       is_required: true
+  - distribution_groups: $DISTRIBUTION_GROUPS
+    opts:
+      title: "AppCenter distribution groups"
+      description: "Groups should be comma separated e.g. group1, group2. If not specified, artifact will be sent to all distribution groups"
+      is_expand: true
+      is_required: false
   - release_notes: $RELEASE_NOTES
     opts:
       title: "Uploaded build related release notes"

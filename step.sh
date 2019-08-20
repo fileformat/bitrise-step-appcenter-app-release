@@ -131,6 +131,9 @@ RELEASE_ID=$(cat "${TMPFILE}" | jq .release_id --raw-output)
 echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
 rm "${TMPFILE}"
 
+IFS=', ' read -r -a DISTRIBUTION_GROUPS <<< $distribution_groups
+if [ ${#DISTRIBUTION_GROUPS[@]} -eq 0 ]
+then
 echo_info "Retrieving distribution groups for ${appcenter_name}"
 TMPFILE=$(mktemp)
 STATUSCODE=$(curl \
@@ -150,8 +153,9 @@ SAVEIFS="${IFS}"
 IFS=$'\n'
 DISTRIBUTION_GROUPS=( $(cat "${TMPFILE}" | jq '.[].name' --raw-output) )
 IFS="${SAVEIFS}"
-echo_details "distribution groups are ${DISTRIBUTION_GROUPS[*]}"
 rm "${TMPFILE}"
+fi
+echo_details "distribution groups are ${DISTRIBUTION_GROUPS[*]}"
 
 for DISTRIBUTION_GROUP in "${DISTRIBUTION_GROUPS[@]}"
 do

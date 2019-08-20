@@ -40,10 +40,11 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
-        - appcenter_name: TestName
-        - appcenter_org: TestOrg
-        - artifact_path: "../step.sh"
+        - appcenter_name: profiles
+        - appcenter_org: szymon.nn
+        - artifact_path: "../app-release.apk"
         - release_notes: "Test release notes"
+        - distribution_groups: "test"
     - script:
         inputs:
         - content: |
