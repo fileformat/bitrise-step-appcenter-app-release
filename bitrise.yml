@@ -44,6 +44,7 @@ workflows:
         - appcenter_org: TestOrg
         - artifact_path: "../step.sh"
         - release_notes: "Test release notes"
+        - distribution_groups: "TestGroup1, TestGroup2"
     - script:
         inputs:
         - content: |
