@@ -9,6 +9,11 @@ This is a "step" for the [Bitrise](https://www.bitrise.io/) CI/CD service that p
 * appcenter_org - AppCenter organization that owns the app
 * artifact_path - the full path of the `.ipa` or `.apk` file
 
+## Optional variables
+
+* release_notes - release notes to include with this release
+* distribution_groups - comma-separated list of distribution groups to release it to.  If not set, it will release it to all associated distribution groups
+
 ## Troubleshooting
 
 AppCenter has thorough Swagger/OpenAPI [documentation](https://openapi.appcenter.ms/) that includes the possible HTTP error status codes (which are printed as the script runs).
