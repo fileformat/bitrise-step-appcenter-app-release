@@ -7,7 +7,7 @@ app:
   #- A_SECRET_PARAM: $A_SECRET_PARAM
   # If you want to share this step into a StepLib
   - BITRISE_STEP_ID: appcenter-app-release
-  - BITRISE_STEP_VERSION: "1.0.0"
+  - BITRISE_STEP_VERSION: "1.0.1"
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/fileformat/bitrise-step-appcenter-app-release.git
   - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
 
@@ -44,6 +44,7 @@ workflows:
         - appcenter_org: TestOrg
         - artifact_path: "../step.sh"
         - release_notes: "Test release notes"
+        - distribution_groups: "TestGroup1, TestGroup2"
     - script:
         inputs:
         - content: |
