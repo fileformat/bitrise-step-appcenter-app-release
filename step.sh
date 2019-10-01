@@ -131,7 +131,7 @@ RELEASE_ID=$(cat "${TMPFILE}" | jq .release_id --raw-output)
 echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
 rm "${TMPFILE}"
 
-IFS=', ' read -r -a DISTRIBUTION_GROUPS <<< $distribution_groups
+IFS=', ' read -r -a DISTRIBUTION_GROUPS <<< ${distribution_groups:-}
 if [ ${#DISTRIBUTION_GROUPS[@]} -eq 0 ]
 then
 echo_info "Retrieving distribution groups for ${appcenter_name}"
@@ -167,7 +167,7 @@ do
 		--header "X-API-Token: ${appcenter_api_token}" \
 		--silent --show-error \
 		--output /dev/stderr --write-out "%{http_code}" \
-		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers}}" \
+		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers:-true}}" \
 		"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/releases/${RELEASE_ID}" \
 		2> "${TMPFILE}")
 
