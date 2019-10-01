@@ -45,6 +45,7 @@ workflows:
         - artifact_path: "../step.sh"
         - release_notes: "Test release notes"
         - distribution_groups: "TestGroup1, TestGroup2"
+        - notify_testers: true
     - script:
         inputs:
         - content: |

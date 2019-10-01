@@ -95,3 +95,10 @@ inputs:
       title: "Uploaded build related release notes"
       is_expand: true
       is_required: false
+  - notify_testers: true
+    opts:
+      title: "Notify testers?"
+      summary: "True if you want to notify testers of a new release"
+      value_options: ["true", "false"]
+      is_expand: true
+      is_required: true

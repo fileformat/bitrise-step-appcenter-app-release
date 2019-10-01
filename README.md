@@ -8,6 +8,7 @@ This is a "step" for the [Bitrise](https://www.bitrise.io/) CI/CD service that p
 * appcenter_name - name of the app on AppCenter
 * appcenter_org - AppCenter organization that owns the app
 * artifact_path - the full path of the `.ipa` or `.apk` file
+* notify_testers - a boolean which determines whether to notify testers of a new release
 
 ## Optional variables
 
