@@ -40,12 +40,12 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
-        - appcenter_name: TestName
-        - appcenter_org: TestOrg
-        - artifact_path: "../step.sh"
-        - release_notes: "Test release notes"
-        - distribution_groups: "TestGroup1, TestGroup2"
-        - notify_testers: true
+        - appcenter_name: $APPCENTER_NAME
+        - appcenter_org: $APPCENTER_ORG
+        - artifact_path: $ARTIFACT_PATH
+        - release_notes: $RELEASE_NOTES
+        - distribution_groups: $DISTRIBUTION_GROUPS
+        - notify_testers: $NOTIFY_TESTERS
     - script:
         inputs:
         - content: |
