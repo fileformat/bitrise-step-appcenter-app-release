@@ -167,7 +167,7 @@ do
 		--header "X-API-Token: ${appcenter_api_token}" \
 		--silent --show-error \
 		--output /dev/stderr --write-out "%{http_code}" \
-		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers:-true}}" \
+		-d "{ \"distribution_group_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers:-true}}" \
 		"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/releases/${RELEASE_ID}" \
 		2> "${TMPFILE}")
 
