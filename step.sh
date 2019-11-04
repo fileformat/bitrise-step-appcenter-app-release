@@ -157,6 +157,10 @@ rm "${TMPFILE}"
 fi
 echo_details "distribution groups are ${DISTRIBUTION_GROUPS[*]}"
 
+echo "{\"r\":\"${release_notes:-}\"}" >> TMP_RELEASE_NOTES.notjson
+RELEASE_NOTES_SANITIZED=( $(echo $(<TMP_RELEASE_NOTES.notjson) | jq -r '.r') )
+rm TMP_RELEASE_NOTES.notjson
+
 for DISTRIBUTION_GROUP in "${DISTRIBUTION_GROUPS[@]}"
 do
 	echo_info "Adding to distribution group ${DISTRIBUTION_GROUP}"
@@ -167,7 +171,7 @@ do
 		--header "X-API-Token: ${appcenter_api_token}" \
 		--silent --show-error \
 		--output /dev/stderr --write-out "%{http_code}" \
-		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers:-true}}" \
+		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${RELEASE_NOTES_SANITIZED:-}\", \"notify_testers\": ${notify_testers:-true}}" \
 		"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/releases/${RELEASE_ID}" \
 		2> "${TMPFILE}")
 
