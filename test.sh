@@ -25,6 +25,13 @@ export DISTRIBUTION_GROUPS=x-test-group-1
 export NOTIFY_TESTERS=false
 bitrise run test
 
+echo "INFO: testing to 1 group, no notifications, multi-line release notes"
+export DISTRIBUTION_GROUPS=x-test-group-1
+export NOTIFY_TESTERS=false
+export RELEASE_NOTES="Hey there, just testing a 
+newline"
+bitrise run test
+
 echo "INFO: testing to second group, w/notifications and release notes"
 export DISTRIBUTION_GROUPS=x-test-group-2
 export NOTIFY_TESTERS=true
