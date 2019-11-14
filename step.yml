@@ -102,3 +102,9 @@ inputs:
       title: "Uploaded build related release notes"
       is_expand: true
       is_required: false
+
+outputs:
+  - RELEASEID:
+    opts:
+      title: "Release ID"
+      description: "The `release_id` of the current release"
