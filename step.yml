@@ -90,6 +90,12 @@ inputs:
       description: "Groups should be comma separated e.g. group1, group2. If not specified, artifact will be sent to all distribution groups"
       is_expand: true
       is_required: false
+  - mandatory_update: $MANDATORY_UPDATE
+    opts:
+      title: "AppCenter Mandatory Update flag"
+      description: "Whether this release is a mandatory update (default = false)"
+      is_expand: true
+      is_required: false
   - notify_testers: $NOTIFY_TESTERS
     opts:
       title: "Notify testers?"
@@ -108,3 +114,6 @@ outputs:
     opts:
       title: "App Center Distribute Release URL"
       description: "URL pointing to the download page of the current release"
+  - APPCENTER_DOWNLOAD_URL: $APPCENTER_DOWNLOAD_URL
+    opts:
+      title: "Download URL from AppCenter"

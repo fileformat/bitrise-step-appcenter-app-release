@@ -37,3 +37,8 @@ export NOTIFY_TESTERS=true
 export RELEASE_NOTES="Wow! Another test at $(date)!"
 bitrise run test
 
+echo "INFO: testing multi-line release notes"
+export RELEASE_NOTES=$'a e""R<*&before newline\nafter newline 1
+after newline 2\n\nafter two newlines\thello!&amp;after ampersand\''
+export MANDATORY_UPDATE=true
+bitrise run test
