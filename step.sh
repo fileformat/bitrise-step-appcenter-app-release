@@ -131,6 +131,9 @@ RELEASE_ID=$(cat "${TMPFILE}" | jq .release_id --raw-output)
 echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
 rm "${TMPFILE}"
 
+DISTRIBUTE_RELEASE_URL="https://appcenter.ms/orgs/${appcenter_org}/apps/${appcenter_name}/distribute/releases/${RELEASE_ID}"
+envman add --key APPCENTER_DISTRIBUTE_RELEASE_URL --value "${DISTRIBUTE_RELEASE_URL}"
+
 IFS=', ' read -r -a DISTRIBUTION_GROUPS <<< ${distribution_groups:-}
 if [ ${#DISTRIBUTION_GROUPS[@]} -eq 0 ]
 then
