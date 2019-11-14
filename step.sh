@@ -64,6 +64,8 @@ validate_required_input "appcenter_name" ${appcenter_name:-}
 validate_required_input "appcenter_org" ${appcenter_org:-}
 validate_required_input "artifact_path" ${artifact_path:-}
 
+RELEASE_NOTES_ENCODED="$( jq --null-input --compact-output --arg str "${release_notes:-}" '$str' )"
+
 if [ ! -f "${artifact_path}" ]; then
 	echo_fail "[!] File ${artifact_path} does not exist"
 fi
@@ -159,6 +161,7 @@ echo_details "distribution groups are ${DISTRIBUTION_GROUPS[*]}"
 
 for DISTRIBUTION_GROUP in "${DISTRIBUTION_GROUPS[@]}"
 do
+	DISTRIBUTION_GROUP_ENCODED="$( jq --null-input --compact-output --arg str "$DISTRIBUTION_GROUP" '$str' )"
 	echo_info "Adding to distribution group ${DISTRIBUTION_GROUP}"
 	TMPFILE=$(mktemp)
 	STATUSCODE=$(curl -X PATCH \
@@ -167,7 +170,7 @@ do
 		--header "X-API-Token: ${appcenter_api_token}" \
 		--silent --show-error \
 		--output /dev/stderr --write-out "%{http_code}" \
-		-d "{ \"destination_name\": \"${DISTRIBUTION_GROUP}\", \"release_notes\": \"${release_notes:-}\", \"notify_testers\": ${notify_testers:-true}}" \
+		-d "{ \"destination_name\": ${DISTRIBUTION_GROUP_ENCODED}, \"release_notes\": ${RELEASE_NOTES_ENCODED}, \"mandatory_update\": ${mandatory_update:-false}, \"notify_testers\": ${notify_testers:-true}}" \
 		"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/releases/${RELEASE_ID}" \
 		2> "${TMPFILE}")
 
@@ -178,5 +181,27 @@ do
 	echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
 	rm "${TMPFILE}"
 done
+
+echo_info "Retrieving download url"
+TMPFILE=$(mktemp)
+STATUSCODE=$(curl -X GET \
+	--header "Accept: application/json" \
+	--header "X-API-Token: ${appcenter_api_token}" \
+	--silent --show-error \
+	--output /dev/stderr --write-out "%{http_code}" \
+	"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/releases/${RELEASE_ID}" \
+	2> "${TMPFILE}")
+
+if [ "${STATUSCODE}" -ne "200" ]
+then
+	echo_fail "API call failed with ${STATUSCODE}: $(cat ${TMPFILE})"
+fi
+DOWNLOAD_URL=$(cat "${TMPFILE}" | jq .download_url --raw-output)
+
+echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
+echo_details "APPCENTER_DOWNLOAD_URL is ${DOWNLOAD_URL}"
+envman add --key APPCENTER_DOWNLOAD_URL --value "${DOWNLOAD_URL}"
+
+rm "${TMPFILE}"
 
 echo_done "Completed AppCenter app upload at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
