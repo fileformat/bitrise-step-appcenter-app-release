@@ -102,3 +102,9 @@ inputs:
       title: "Uploaded build related release notes"
       is_expand: true
       is_required: false
+
+outputs:
+  - APPCENTER_DISTRIBUTE_RELEASE_URL:
+    opts:
+      title: "App Center Distribute Release URL"
+      description: "URL pointing to the download page of the current release"
