@@ -133,7 +133,7 @@ RELEASE_ID=$(cat "${TMPFILE}" | jq .release_id --raw-output)
 echo_details "result is ${STATUSCODE}: $(cat ${TMPFILE})"
 rm "${TMPFILE}"
 
-IFS=', ' read -r -a DISTRIBUTION_GROUPS <<< ${distribution_groups:-}
+IFS=',' read -r -a DISTRIBUTION_GROUPS <<< ${distribution_groups:-}
 if [ ${#DISTRIBUTION_GROUPS[@]} -eq 0 ]
 then
 echo_info "Retrieving distribution groups for ${appcenter_name}"
