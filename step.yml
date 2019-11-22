@@ -96,6 +96,7 @@ inputs:
       description: "Whether this release is a mandatory update (default = false)"
       is_expand: true
       is_required: false
+      value_options: ["true", "false"]
   - notify_testers: $NOTIFY_TESTERS
     opts:
       title: "Notify testers?"
