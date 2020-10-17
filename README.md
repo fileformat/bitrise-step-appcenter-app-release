@@ -2,6 +2,15 @@
 
 This is a "step" for the [Bitrise](https://www.bitrise.io/) CI/CD service that publishes ("releases") an application to [Microsoft AppCenter](https://appcenter.ms/).
 
+## ATTENTION: Deprecated!
+
+Please note that this step is deprecated in favor of the official (and supported!) steps from Bitrise:
+
+* [AppCenter Android Deploy](https://github.com/bitrise-steplib/steps-appcenter-deploy-android) 
+* [AppCenter iOS Deploy](https://github.com/bitrise-steplib/steps-appcenter-deploy-ios)
+
+I won't delete this step, but I won't be doing any changes.
+
 ## Required variables
 
 * appcenter_api_token - token for the AppCenter API.  This is a secret and should not be embedded in bitrise.yml!
