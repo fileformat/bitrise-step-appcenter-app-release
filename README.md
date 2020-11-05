@@ -18,6 +18,8 @@ I won't delete this step, but I won't be doing any changes.
 * appcenter_org - AppCenter organization that owns the app
 * artifact_path - the full path of the `.ipa` or `.apk` file
 
+You need to extract your appcenter_name and appcenter_org from the url. Follow [this link](https://docs.microsoft.com/en-us/appcenter/api-docs/#find-your-app-center-app-name-and-owner-name) for more information.
+
 ## Optional variables
 
 * release_notes - release notes to include with this release
