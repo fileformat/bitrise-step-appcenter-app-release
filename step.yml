@@ -111,6 +111,10 @@ inputs:
       is_required: false
 
 outputs:
+  - APPCENTER_DISTRIBUTE_RELEASE_URL:
+    opts:
+      title: "App Center Distribute Release URL"
+      description: "URL pointing to the download page of the current release"
   - APPCENTER_DOWNLOAD_URL: $APPCENTER_DOWNLOAD_URL
     opts:
       title: "Download URL from AppCenter"
