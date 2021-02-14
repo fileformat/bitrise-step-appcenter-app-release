@@ -111,6 +111,10 @@ inputs:
       is_required: false
 
 outputs:
+  - RELEASEID:
+    opts:
+      title: "Release ID"
+      description: "The `release_id` of the current release"
   - APPCENTER_DOWNLOAD_URL: $APPCENTER_DOWNLOAD_URL
     opts:
       title: "Download URL from AppCenter"
