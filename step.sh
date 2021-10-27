@@ -85,7 +85,7 @@ STATUSCODE=$(curl \
 	--header "X-API-Token: ${appcenter_api_token}" \
 	--silent --show-error \
 	--output /dev/stderr --write-out "%{http_code}" \
-	"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/release_uploads" \
+	"https://api.appcenter.ms/v0.1/apps/${appcenter_org}/${appcenter_name}/uploads/releases" \
 	2> "${TMPFILE}")
 if [ "${STATUSCODE}" -ne "201" ]
 then
